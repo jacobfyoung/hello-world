@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Plan V1</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 0;
+      color: #2d3748;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+    .banner {
+      background-color: #d7f73b;
+      padding: 8px 16px;
+      font-weight: 600;
+      text-align: right;
+      font-size: 14px;
+    }
+    .nav {
+      display: flex;
+      gap: 16px;
+      padding: 12px 16px;
+      background: #ffffff;
+      border-bottom: 1px solid #e1e5e9;
+    }
+    .nav a {
+      text-decoration: none;
+      color: #4a5568;
+      font-weight: 600;
+      font-size: 13px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .nav a:hover {
+      background-color: #f1f3f4;
+      color: #2d3748;
+    }
+    .nav a.active {
+      background-color: #f9e8eb;
+      color: #c92c54;
+    }
+    .button-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: -10px;
+      margin-left: 0px;
+      flex-wrap: wrap;
+    }
+    
+    .button-tabs button {
+      padding: 6px 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      background: #ffffff;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 500;
+      color: #6b7280;
+      transition: all 0.2s ease;
+
+    }
+    
+    .button-tabs button:hover {
+      background: #f9fafb;
+      border-color: #9ca3af;
+    }
+    
+    .button-tabs button.active {
+      background: #f3f4f6;
+      border-color: #6b7280;
+      color: #374151;
+    }
+    .content {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .card {
+      background: #ffffff;
+      padding: 16px;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e1e5e9;
+      margin-bottom: 20px;
+    }
+    .project-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+        .section-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+    .milestone-item-content {
+      border: 1px dashed #ccc;
+      padding: 6px;
+      border-radius: 6px;
+      min-height: 20px;
+      background: #fafafa;
+      color: #4a5568;
+      line-height: 1.5;
+      font-weight: 400;
+      font-size: 12px;
+      outline: none;
+      border-color: #999;
+    }
+        .value-items {
+      padding: 6px 6px;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      background: #ffffff;
+      font-size: 12px;
+      font-weight: 500;
+      color: #4a5568;
+      transition: all 0.2s ease;
+    }
+            .value-text {
+      color: #4a5568;
+      line-height: 1.5;
+      font-weight: 400;
+      font-size: 12px;
+    }
+    .team-member {
+      padding: 8px 0;
+      border-bottom: 1px solid #f3f4f6;
+      position: relative;
+    }
+    
+    .team-member:last-child {
+      border-bottom: none;
+    }
+    
+    .member-name {
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 2px;
+      font-size: 14px;
+      outline: none;
+      border: 1px dashed transparent;
+      padding: 2px 4px;
+      border-radius: 3px;
+    }
+    
+    .member-name:focus {
+      border-color: #c92c54;
+      background: #fafafa;
+    }
+    
+    .member-role {
+      font-size: 12px;
+      color: #6b7280;
+      line-height: 1.3;
+      outline: none;
+      border: 1px dashed transparent;
+      padding: 2px 4px;
+      border-radius: 3px;
+    }
+    
+    .member-role:focus {
+      border-color: #c92c54;
+      background: #fafafa;
+    }
+    
+    .delete-member {
+      position: absolute;
+      right: 0;
+      top: 8px;
+      background: #fee;
+      border: 1px solid #fcc;
+      color: #c92c54;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: bold;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .team-member:hover .delete-member {
+      display: flex;
+    }
+        .stakeholders-member {
+      position: relative;
+    }
+    
+    .stakeholders-member:last-child {
+      border-bottom: none;
+    }
+    .stakeholders-member:hover .delete-member {
+      display: flex;
+    }
+        .stakeholders-items {
+      padding: 6px 6px;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      background: #ffffff;
+      font-size: 12px;
+      font-weight: 500;
+      color: #4a5568;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+    }        
+    .status-section {
+      margin-bottom: 14px;
+    }
+        
+    .status-item {
+      margin-bottom: 12px;
+    }
+        
+    .status-label {
+     font-weight: 600;
+     color: #1a1a1a;
+     margin-bottom: 2px;
+     margin-top: 6px;
+     font-size: 13px;
+    }
+        
+    .status-text {
+     color: #4a5568;
+     line-height: 1.5;
+     font-size: 12px;
+    }
+
+    .list-section {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .add-button {
+      background: #f3f4f6;
+      border: 1px solid #d1d5db;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 12px;
+      margin-top: 10px;
+      transition: all 0.2s ease;
+    }
+    .add-button:hover {
+      background: #e5e7eb;
+      border-color: #9ca3af;
+    }
+    .milestone-box {
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      padding: 10px;
+      margin-bottom: 12px;
+      background: #f9f9f9;
+      position: relative; /* make it a positioning container */
+    }
+    .milestone-title {
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .milestone-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    /* Claravine-style color dropdown */
+    .color-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-button {
+      background: linear-gradient(to bottom, #ffffff, #f8fafc);
+      /*border: 1px solid #cbd5e1;*/
+      border-radius: 6px;
+      padding: 2px 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 500;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      /*box-shadow: 
+        0 1px 2px rgba(0, 0, 0, 0.05),
+        0 1px 1px rgba(0, 0, 0, 0.03);*/
+      min-height: 20px;
+    }
+
+    .dropdown-button:hover {
+      border-color: #3b82f6;
+      background: linear-gradient(to bottom, #ffffff, #f1f5f9);
+      box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.1),
+        0 1px 2px rgba(0, 0, 0, 0.06);
+    }
+
+    .dropdown-button.open {
+      border-color: #2563eb;
+      background: linear-gradient(to bottom, #ffffff, #eff6ff);
+      box-shadow: 
+        0 0 0 2px rgba(37, 99, 235, 0.1),
+        0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .color-indicator {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      border: 1.1px solid #e2e8f0;
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+
+.color-indicator.red { 
+  background: linear-gradient(135deg, #F24E30, #dc2626); 
+  border-color: #C7321A;  /* Darker red border */
+}
+
+.color-indicator.green { 
+  background: linear-gradient(135deg, #06C47E, #059669); 
+  border-color: #04825F;  /* Darker green border */
+}
+
+.color-indicator.yellow { 
+  background: linear-gradient(135deg, #EBC30F, #d97706); 
+  border-color: #C99C05;  /* Darker yellow border */
+}
+    .color-indicator.clear { 
+      background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+      border-color: #94a3b8;
+      position: relative;
+    }
+    .color-indicator.clear::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 6px;
+      height: 1px;
+      background: #64748b;
+      border-radius: 1px;
+      transform: translate(-50%, -50%);
+    }
+
+    .dropdown-arrow {
+      margin-left: auto;
+      font-size: 10px;
+      color: #64748b;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-weight: 600;
+    }
+
+    .dropdown-button.open .dropdown-arrow {
+      transform: rotate(180deg);
+      color: #2563eb;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      min-width: 140px;
+      background: white;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 8px;
+      box-shadow: 
+        0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      z-index: 1000;
+      display: none;
+      overflow: hidden;
+    }
+
+    .dropdown-menu.open {
+      display: block;
+      animation: dropdownFadeIn 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @keyframes dropdownFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-4px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .dropdown-option {
+      padding: 8px 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      color: #475569;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .dropdown-option:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-option:hover {
+      background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+      color: #1e293b;
+    }
+
+    /* Status-specific hover styling */
+    .dropdown-option[data-status="clear"]:hover {
+      background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+    }
+    .dropdown-option[data-status="green"]:hover {
+      background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+      color: #047857;
+    }
+    .dropdown-option[data-status="yellow"]:hover {
+      background: linear-gradient(135deg, #fffbeb, #fef3c7);
+      color: #b45309;
+    }
+    .dropdown-option[data-status="red"]:hover {
+      background: linear-gradient(135deg, #fef2f2, #fecaca);
+      color: #b91c1c;
+    }
+
+    @media (max-width: 768px) {
+      .content {
+        grid-template-columns: 1fr;
+        padding: 12px;
+      }
+    }
+
+      /* --- Side Navigation --- */
+  .side-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 50px; /* collapsed width */
+    background-color: #ffffff;
+    color: #4a5568;
+    overflow-x: hidden;
+    transition: width 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 1000;
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+  .side-nav.expanded {
+    width: 200px; /* expanded width */
+  }
+
+  .side-nav .nav-links {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+  }
+
+  .side-nav .nav-links a {
+    padding: 10px 16px;
+    text-decoration: none;
+    color: #4a5568;
+    font-size: 14px;
+    display: block;
+    white-space: nowrap;
+    transition: background 0.2s ease;
+  }
+
+  .side-nav .nav-links a:hover {
+    background-color: #333;
+  }
+
+  .side-nav-toggle {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 8px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+
+  /* Shift page content when sidebar is open */
+  .content {
+    margin-left: 50px; /* collapsed sidebar space */
+    transition: margin-left 0.3s ease;
+  }
+
+  .side-nav.expanded ~ .content {
+    margin-left: 200px; /* expanded sidebar space */
+  }
+
+   /* --- Comments Panel --- */
+  .comments-panel {
+    position: fixed;
+    bottom: 0;
+    left: 50px;   /* match collapsed sidebar width */
+    right: 0;
+    height: 0;
+    background: #ffffff;
+    border-top: 1px solid #ddd;
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    z-index: 999;
+    overflow: hidden;
+  }
+  .side-nav.expanded ~ .comments-panel {
+  left: 200px; /* match expanded sidebar width */
+}
+
+  .comments-panel.open {
+    height: 200px; /* expanded height */
+  }
+
+  .comments-header {
+    background: #f3f4f6;
+    padding: 8px 12px;
+    font-weight: 600;
+    font-size: 13px;
+    border-bottom: 1px solid #e1e5e9;
+  }
+
+  .comments-body {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    font-size: 13px;
+    color: #333;
+  }
+
+  .comment-input {
+    display: flex;
+    border-top: 1px solid #e1e5e9;
+  }
+
+  .comment-input textarea {
+    flex: 1;
+    border: none;
+    padding: 8px;
+    resize: none;
+    font-size: 13px;
+    font-family: inherit;
+    outline: none;
+  }
+
+  .comment-input button {
+    background: #1a73e8;
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .comment-item {
+    padding: 6px 0;
+    border-bottom: 1px solid #f1f1f1;
+  }
+
+  .comment-item:last-child {
+    border-bottom: none;
+  }
+
+  /* Make room when panel is open */
+  .comments-panel.open ~ .content {
+    margin-bottom: 200px;
+  }
+
+/* MILESTONE ICONS */
+  milestone-box {
+  position: relative; /* make it a positioning container */
+}
+
+.milestone-toolbar {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  display: flex;
+  gap: 10px;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.milestone-toolbar span {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.milestone-toolbar span:hover {
+  color: #111;
+}
+
+.milestone-toolbar .count {
+  min-width: 12px;
+  text-align: right;
+  font-weight: 600;
+  font-size: 12px;
+}
+  .milestone-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 8px;
+    margin: 4px 0;
+    background: #f9fafb;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+
+  .milestone-item-left {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+  }
+
+  .milestone-month {
+    cursor: pointer;
+    /*border: 1px dashed #ccc;
+    padding: 6px;
+    border-radius: 6px;
+    min-height: 20px;
+    border-color: #999;
+    line-height: 1.5;*/
+    background: #fafafa;
+    color: #4a5568;
+    font-weight: 600;
+    font-size: 12px;
+    border: none;
+    appearance: none;        /* removes arrow (most browsers) */
+  -webkit-appearance: none; /* Safari/Chrome */
+  -moz-appearance: none;   /* Firefox */
+  padding-right: 0;        /* prevents extra arrow spacing */
+  }
+
+  .milestone-item-content {
+    flex: 1;
+  }
+
+  .milestone-item-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: #555;
+  }
+
+  .milestone-item-meta .count {
+    min-width: 16px;
+    text-align: right;
+  }
+
+  .milestone-item-meta button {
+    border: none;
+    background: #e5e7eb;
+    border-radius: 4px;
+    padding: 2px 6px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .milestone-item-meta button:hover {
+    background: #d1d5db;
+  }
+
+  /* Make resource items visually match stakeholders */
+.resource-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+  border: 1px solid #d1d5db;      /* matches your milestone/side-nav border */
+  border-radius: 4px;
+  background: #ffffff;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+.resource-item a {
+  text-decoration: none;
+  color: #1f2937;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.resource-item .delete-resource {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  color: #6b7280;
+}
+.resource-item .delete-resource:hover { color: #111827; }
+
+/* Inline add form */
+.resource-form {
+  display: none;                   /* toggled by JS */
+  gap: 8px;
+  margin-top: 8px;
+}
+.resource-form input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 12px;
+}
+.resource-form .save-btn,
+.resource-form .cancel-btn {
+  padding: 8px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #f9fafb;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+}
+.resource-form .save-btn:hover,
+.resource-form .cancel-btn:hover {
+  background: #f3f4f6;            /* same light hover used elsewhere */
+}
+
+
+/*ANIMATION SECTION*/
+      .wiggle-hover:hover {
+      animation: wiggle 0.35s ease-in-out;
+    }
+
+    @keyframes wiggle {
+      25%   { transform: scale(1) rotate(-3deg); }
+      25%  { transform: scale(1.05) rotate(3deg); }
+      50%  { transform: scale(1.14) rotate(-3deg); }
+      75%  { transform: scale(1.08) rotate(3deg); }
+      100% { transform: scale(1) rotate(0deg); }
+    }
+  
+  /* Side nav border matches milestone boxes */
+  .side-nav {
+    border-right: 1px solid #d1d5db;
+  }
+
+  /* Icon + label layout */
+  .side-nav .nav-links a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  /* Hide labels when collapsed */
+  .side-nav:not(.expanded) .nav-links .label {
+    display: none;
+  }
+  /* Show labels when expanded */
+  .side-nav.expanded .nav-links .label {
+    display: inline;
+  }
+  /* Center icons when collapsed */
+  .side-nav:not(.expanded) .nav-links a {
+    justify-content: center;
+  }
+
+  
+  /* Match hover style to milestone boxes */
+  .side-nav .nav-links a:hover {
+    background-color: #f3f4f6;
+    color: #111827;
+  }
+
+  
+  /* Make the tab bar span full width so the right column aligns with the first card */
+  .button-tabs { grid-column: 1 / -1; }
+  .content { align-items: start; } /* ensure top alignment across grid rows */
+</style>
+  <script>
+    function addStakeholder(containerId) {
+  const container = document.getElementById(containerId);
+  const newMember = document.createElement('div');
+  newMember.className = 'stakeholders-member';
+  
+  newMember.innerHTML = `
+    <div class="stakeholders-items" contenteditable="true">NEW STAKEHOLDER</div>
+    <button class="delete-member" onclick="deleteMember(this)" title="Delete member">×</button>
+  `;
+  
+  container.appendChild(newMember);
+
+  const nameField = newMember.querySelector('.stakeholders-items');
+  nameField.focus();
+  nameField.select();
+}
+
+    function addProjectLead(containerId) {
+      const container = document.getElementById(containerId);
+      const newMember = document.createElement('div');
+      newMember.className = 'team-member';
+      
+      newMember.innerHTML = `
+        <div class="member-name" contenteditable="true">New Team Member</div>
+        <div class="member-role" contenteditable="true">Enter role here</div>
+        <button class="delete-member" onclick="deleteMember(this)" title="Delete member">×</button>
+      `;
+      
+      container.appendChild(newMember);
+      
+      // Focus on the name field for immediate editing
+      const nameField = newMember.querySelector('.member-name');
+      nameField.focus();
+      nameField.select();
+    }
+
+function deleteMember(button) {
+  let member = button.closest('.team-member');
+  if (!member) {
+    member = button.closest('.stakeholders-member');
+  }
+  if (member) {
+    member.remove();
+  }
+}
+
+      function addMilestoneBox() {
+        const container = document.getElementById('milestone-container');
+        const box = document.createElement('div');
+        box.className = 'milestone-box';
+        box.innerHTML = `
+          <div class="milestone-title" contenteditable="true">New Milestone Title</div>
+          <div class="milestone-toolbar">
+                  <span>💬 <span class="count">31</span></span>
+                  <span>🏆 <span class="count">2</span></span>
+                  <span>📢 <span class="count">13</span></span>
+          </div>
+          <div class="milestone-items"></div>
+          <button class="add-button" onclick="addMilestoneItem(this)">+ Add Checkpoint</button>
+        `;
+        container.appendChild(box);
+
+        const titleField = box.querySelector('.milestone-title');
+        titleField.focus();
+        titleField.select();
+      }
+
+    function addMilestoneItem(button) {
+      const itemsContainer = button.previousElementSibling;
+      const item = document.createElement('div');
+      item.className = 'milestone-item';
+      
+      // Create unique ID for this dropdown
+      const dropdownId = 'dropdown-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+      
+      item.innerHTML = `
+        <div class="color-dropdown" id="${dropdownId}">
+          <div class="dropdown-button" onclick="toggleDropdown('${dropdownId}')" tabindex="0" role="button" aria-haspopup="listbox" aria-expanded="false">
+            <div class="color-indicator clear"></div>
+            <div class="dropdown-arrow">▼</div>
+          </div>
+          <div class="dropdown-menu" role="listbox">
+            <div class="dropdown-option" data-status="clear" onclick="selectOption('${dropdownId}', 'clear', 'Not Started')" role="option">
+              <div class="color-indicator clear"></div>
+              <span>Not Started</span>
+            </div>
+            <div class="dropdown-option" data-status="green" onclick="selectOption('${dropdownId}', 'green', 'Done')" role="option">
+              <div class="color-indicator green"></div>
+              <span>Done</span>
+            </div>
+            <div class="dropdown-option" data-status="yellow" onclick="selectOption('${dropdownId}', 'yellow', 'In Progress')" role="option">
+              <div class="color-indicator yellow"></div>
+              <span>In Progress</span>
+            </div>
+            <div class="dropdown-option" data-status="red" onclick="selectOption('${dropdownId}', 'red', 'Blocked')" role="option">
+              <div class="color-indicator red"></div>
+              <span>Blocked</span>
+            </div>
+          </div>
+        </div>
+                    <div class="milestone-item-left">
+          <div class="milestone-item-content" contenteditable="false">
+                     <select class="milestone-month wiggle-hover" contenteditable="false">
+            <option>Jan</option><option>Feb</option><option>Mar</option><option>Apr</option>
+            <option>May</option><option>Jun</option><option>Jul</option><option>Aug</option>
+            <option>Sep</option><option>Oct</option><option>Nov</option><option>Dec</option>
+          </select>
+          <span>: </span> <span contenteditable="true">New Milestone Checkpoint</span>
+        </div>
+        <div class="milestone-item-meta">
+      🗂️ <span class="count">0</span>
+      <button onclick="incrementCard(this)">+</button>
+
+
+    </div>
+      `;
+      itemsContainer.appendChild(item);
+      
+      // Focus on the text field for immediate editing
+      const textField = item.querySelector('.milestone-item-content');
+      textField.focus();
+      document.execCommand('selectAll', false, null);
+    }
+
+    function deleteItemOnEmpty(event, element) {
+      if ((event.key === 'Backspace' || event.key === 'Delete') && element.innerText.trim() === '') {
+        const milestoneItem = element.closest('.milestone-item');
+        if (milestoneItem) {
+          milestoneItem.remove();
+        }
+      }
+    }
+
+    // Color dropdown functions
+    function toggleDropdown(dropdownId) {
+      const dropdown = document.getElementById(dropdownId);
+      const button = dropdown.querySelector('.dropdown-button');
+      const menu = dropdown.querySelector('.dropdown-menu');
+      
+      // Close other dropdowns
+      document.querySelectorAll('.color-dropdown').forEach(d => {
+        if (d.id !== dropdownId) {
+          d.querySelector('.dropdown-button').classList.remove('open');
+          d.querySelector('.dropdown-menu').classList.remove('open');
+          d.querySelector('.dropdown-button').setAttribute('aria-expanded', 'false');
+        }
+      });
+      
+      // Toggle current dropdown
+      const isOpen = button.classList.contains('open');
+      button.classList.toggle('open');
+      menu.classList.toggle('open');
+      button.setAttribute('aria-expanded', !isOpen);
+    }
+
+    function selectOption(dropdownId, color, text) {
+      const dropdown = document.getElementById(dropdownId);
+      const button = dropdown.querySelector('.dropdown-button');
+      const colorElement = button.querySelector('.color-indicator');
+      
+      colorElement.className = `color-indicator ${color}`;
+      
+      // Close dropdown
+      button.classList.remove('open');
+      dropdown.querySelector('.dropdown-menu').classList.remove('open');
+      button.setAttribute('aria-expanded', 'false');
+    }
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function(event) {
+      if (!event.target.closest('.color-dropdown')) {
+        document.querySelectorAll('.color-dropdown').forEach(dropdown => {
+          dropdown.querySelector('.dropdown-button').classList.remove('open');
+          dropdown.querySelector('.dropdown-menu').classList.remove('open');
+          dropdown.querySelector('.dropdown-button').setAttribute('aria-expanded', 'false');
+        });
+      }
+    });
+    function toggleSideNav() {
+      document.getElementById('sideNav').classList.toggle('expanded');
+    }
+
+    function toggleCommentsPanel() {
+      document.getElementById('commentsPanel').classList.toggle('open');
+    }
+
+    function addComment() {
+      const textArea = document.getElementById('commentText');
+      const body = document.getElementById('commentsBody');
+      const text = textArea.value.trim();
+      if (text) {
+        const item = document.createElement('div');
+        item.className = 'comment-item';
+        item.textContent = text;
+        body.appendChild(item);
+        textArea.value = '';
+        body.scrollTop = body.scrollHeight; // auto scroll
+      }
+    }
+    function incrementCard(button) {
+  const countSpan = button.previousElementSibling;
+  let value = parseInt(countSpan.textContent || "0", 10);
+  countSpan.textContent = value + 1;
+}
+
+// Show/hide the inline form
+  function showResourceForm() {
+    document.getElementById('resource-form').style.display = 'grid';
+    document.getElementById('resource-name').focus();
+  }
+  function cancelResource() {
+    document.getElementById('resource-form').style.display = 'none';
+    document.getElementById('resource-name').value = '';
+    document.getElementById('resource-link').value = '';
+  }
+
+  // Basic URL sanitization (allow only http/https)
+  function sanitizeUrl(url) {
+    try {
+      const u = new URL(url);
+      if (u.protocol !== 'http:' && u.protocol !== 'https:') return null;
+      return u.toString();
+    } catch { return null; }
+  }
+
+  // Save a new resource item
+  function saveResource() {
+    const nameEl = document.getElementById('resource-name');
+    const linkEl = document.getElementById('resource-link');
+    const name = nameEl.value.trim();
+    const link = sanitizeUrl(linkEl.value.trim());
+    if (!name || !link) {
+      alert('Please enter a name and a valid https:// link.');
+      return;
+    }
+
+    const list = document.getElementById('resources-list');
+    const item = document.createElement('div');
+    item.className = 'resource-item';
+
+    const a = document.createElement('a');
+    a.href = link;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.textContent = name;
+
+    const del = document.createElement('button');
+    del.className = 'delete-resource';
+    del.title = 'Delete resource';
+    del.textContent = '×';
+    del.onclick = () => { item.remove(); saveResourcesToStorage(); };
+
+    item.appendChild(a);
+    item.appendChild(del);
+    list.appendChild(item);
+
+    saveResourcesToStorage();
+    cancelResource();
+  }
+
+  // Persist list to localStorage (handy for demos)
+  function saveResourcesToStorage() {
+    const items = Array.from(document.querySelectorAll('#resources-list .resource-item a'))
+      .map(a => ({ name: a.textContent, link: a.href }));
+    try { localStorage.setItem('project_resources', JSON.stringify(items)); } catch {}
+  }
+  function loadResourcesFromStorage() {
+    try {
+      const raw = localStorage.getItem('project_resources');
+      if (!raw) return;
+      const items = JSON.parse(raw);
+      const list = document.getElementById('resources-list');
+      items.forEach(({name, link}) => {
+        const item = document.createElement('div');
+        item.className = 'resource-item';
+        const a = document.createElement('a');
+        a.href = link; a.target = '_blank'; a.rel = 'noopener noreferrer';
+        a.textContent = name;
+        const del = document.createElement('button');
+        del.className = 'delete-resource'; del.title = 'Delete resource'; del.textContent = '×';
+        del.onclick = () => { item.remove(); saveResourcesToStorage(); };
+        item.appendChild(a); item.appendChild(del);
+        list.appendChild(item);
+      });
+    } catch {}
+  }
+  document.addEventListener('DOMContentLoaded', loadResourcesFromStorage);
+  </script>
+</head>
+<body>
+  <div class="side-nav" id="sideNav">
+    
+    <div class="nav-links">
+      <a href="#"><span class="icon">🏠</span><span class="label wiggle-hover">Home</span></a>
+      <a href="#"><span class="icon">📂</span><span class="label wiggle-hover">Projects</span></a>
+      <a href="#"><span class="icon">🗓</span><span class="label">Roadmap</span></a>
+      <a href="#"><span class="icon">👥</span><span class="label">Team</span></a>
+      <a href="#" onclick="toggleCommentsPanel()"><span class="icon">💬</span><span class="label">Comments</span></a>
+    </div>
+
+    <div class="side-nav-toggle" onclick="toggleSideNav()">⇔</div>
+  </div>
+  <!--<div class="banner">Project Plan V1</div>-->
+  <div class="content">
+
+      <div class="button-tabs">
+        <button>Strategy Tree</button>
+        <button class="active">Overview</button>
+        <button>Collaborators</button>
+        <button>Updates</button>
+        <button>Resources</button>
+        <button>RACI?</button>
+      </div>
+      
+    <div class="grid-left"><div class="card">
+        <div class="project-title" contenteditable="true">BIG IMPORTANT PROJECT FOCUSED ON WORK</div>
+        <div class="status-item">
+        <div class="status-label">VISION:</div>
+        <div class="status-text" contenteditable="true">One sentence vision statement.</div>
+        </div>
+        <div class="status-item">
+        <div class="status-label">CURRENT STATE:</div>
+        <div class="status-text" contenteditable="true">Next-generation heavy-lift rocket capable of delivering crew and cargo to lunar orbit and beyond as part of the Artemis program, supporting NASA's long-term goals of Moon colonization and Mars exploration to develop a next-generation heavy-lift rocket capable of delivering crew and cargo to lunar orbit and beyond as part of the Artemis program, supporting NASA's long-term goals of Moon colonization and Mars exploration.</div>
+        </div>
+        <div class="status-item">
+        <div class="status-label">IDEAL FUTURE STATE:</div>
+        <div class="status-text" contenteditable="true">Next-generation heavy-lift rocket capable of delivering crew and cargo to lunar orbit and beyond as part of the Artemis program, supporting NASA's long-term goals of Moon colonization and Mars exploration to develop a next-generation heavy-lift rocket capable of delivering crew and cargo to lunar orbit and beyond as part of the Artemis program, supporting NASA's long-term goals of Moon colonization and Mars exploration.</div>
+        </div>
+        <div class="status-label">VALUE OPPORTUNITY:</div>
+        <div class="list-section" id="value-opportunity">
+          <div class="value-items">SPONSOR: <span class="value-text" contenteditable="true">One sentence objective.</span></div>
+          <div class="value-items">IMPACT: <span class="value-text" contenteditable="true">One sentence objective.</span></div>
+          <div class="value-items">LEVEL OF EFFORT: <span class="value-text" contenteditable="true">One sentence objective.</span></div>
+          <div class="value-items">CONFIDENCE: <span class="value-text" contenteditable="true">One sentence objective.</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="section-title">KEY MILESTONES: </div>
+        <div id="milestone-container">
+          <div class="milestone-box">
+            <div class="milestone-title" contenteditable="true">25Q1: Finalization of rocket specifications</div>
+              <div class="milestone-toolbar">
+                  <span>💬 <span class="count">31</span></span>
+                  <span>🏆 <span class="count">2</span></span>
+                  <span>📢 <span class="count">13</span></span>
+              </div>
+            <div class="milestone-items">
+              <div class="milestone-item">
+                <div class="color-dropdown" id="dropdown-1">
+                  <div class="dropdown-button" onclick="toggleDropdown('dropdown-1')" tabindex="0" role="button" aria-haspopup="listbox" aria-expanded="false">
+                    <div class="color-indicator clear"></div>
+                    <div class="dropdown-arrow">▼</div>
+                  </div>
+                  <div class="dropdown-menu" role="listbox">
+                    <div class="dropdown-option" data-status="clear" onclick="selectOption('dropdown-1', 'clear', 'Not Started')" role="option">
+                      <div class="color-indicator clear"></div>
+                      <span>Not Started</span>
+                    </div>
+                    <div class="dropdown-option" data-status="green" onclick="selectOption('dropdown-1', 'green', 'Done')" role="option">
+                      <div class="color-indicator green"></div>
+                      <span>Done</span>
+                    </div>
+                    <div class="dropdown-option" data-status="yellow" onclick="selectOption('dropdown-1', 'yellow', 'In Progress')" role="option">
+                      <div class="color-indicator yellow"></div>
+                      <span>In Progress</span>
+                    </div>
+                    <div class="dropdown-option" data-status="red" onclick="selectOption('dropdown-1', 'red', 'Blocked')" role="option">
+                      <div class="color-indicator red"></div>
+                      <span>Blocked</span>
+                    </div>
+                  </div>
+                </div>
+            <div class="milestone-item-left">
+          <div class="milestone-item-content" contenteditable="false">
+                     <select class="milestone-month wiggle-hover" contenteditable="false">
+            <option>Jan</option><option>Feb</option><option>Mar</option><option>Apr</option>
+            <option>May</option><option>Jun</option><option>Jul</option><option>Aug</option>
+            <option>Sep</option><option>Oct</option><option>Nov</option><option>Dec</option>
+          </select>
+          <span>: </span> <span contenteditable="true">1.1 Requirements gathering from mission architecture</span></div>
+        </div>
+        <div class="milestone-item-meta">
+          🗂️ <span class="count">0</span>
+          <button onclick="incrementCard(this)">+</button>
+            </div>
+            </div>
+        </div>
+            <button class="add-button" onclick="addMilestoneItem(this)">+ Add Checkpoint</button>
+          </div>
+        </div>
+        <button class="add-button" onclick="addMilestoneBox()">+ Add Milestone</button>
+      </div>
+    </div>
+    <div class="grid-right">
+      <div class="card">
+        <div class="section-title">PROJECT LEADS:</div>
+        <div class="list-section" id="project-leads">
+          <div class="team-member">
+            <div class="member-name" contenteditable="true">Melissa Hargrove</div>
+            <div class="member-role" contenteditable="true">Director, Advanced Propulsion Systems</div>
+            <button class="delete-member" onclick="deleteMember(this)" title="Delete member">×</button>
+          </div>
+          <div class="team-member">
+            <div class="member-name" contenteditable="true">Allen Reyes</div>
+            <div class="member-role" contenteditable="true">Chief Aerospace Engineer</div>
+            <button class="delete-member" onclick="deleteMember(this)" title="Delete member">×</button>
+          </div>
+          <div class="team-member">
+            <div class="member-name" contenteditable="true">Naomi Li</div>
+            <div class="member-role" contenteditable="true">Program Manager, Artemis Integration Office</div>
+            <button class="delete-member" onclick="deleteMember(this)" title="Delete member">×</button>
+          </div>
+        </div>
+        <button class="add-button" onclick="addProjectLead('project-leads')">+ Add Lead</button>
+      </div>
+      <div class="card">
+        <div class="section-title">STAKEHOLDERS:</div>
+        <div class="list-section" id="stakeholders">
+          <div class="stakeholders-member">
+          <div class="stakeholders-items" contenteditable="true">Melissa Hargrove</div>
+          <button class="delete-member" onclick="deleteMember(this)" title="Delete member">×</button>
+          </div>
+          <div class="stakeholders-member">
+          <div class="stakeholders-items" contenteditable="true">NEW STAKEHOLDER</div>
+          <button class="delete-member" onclick="deleteMember(this)" title="Delete member">×</button>
+          </div>
+          <div class="stakeholders-member">
+          <div class="stakeholders-items" contenteditable="true">NEW STAKEHOLDER</div>
+          <button class="delete-member" onclick="deleteMember(this)" title="Delete member">×</button>
+          </div>
+        </div>
+        <button class="add-button" onclick="addStakeholder('stakeholders')">+ Add Stakeholder</button>
+      </div>
+          <!-- RESOURCES CONTAINER -->
+<div class="card">
+  <div class="section-title">RESOURCES:</div>
+
+  <div class="list-section" id="resources-list">
+    <!-- Resource items will appear here -->
+  </div>
+
+  <!-- Inline form (hidden until "Add Resource" is pressed) -->
+  <div class="resource-form" id="resource-form" style="display:none;">
+    <input type="text" id="resource-name" placeholder="Name (e.g., Design Brief)" />
+    <input type="url" id="resource-link" placeholder="Link (https://…)" />
+    <button class="save-btn" onclick="saveResource()">Save</button>
+    <button class="cancel-btn" onclick="cancelResource()">Cancel</button>
+  </div>
+
+  <button class="add-button" onclick="showResourceForm()">+ Add Resource</button>
+</div>
+    </div>
+  </div>
+<!-- Comments Panel -->
+<div class="comments-panel" id="commentsPanel">
+  <div class="comments-header">Comments</div>
+  <div class="comments-body" id="commentsBody"></div>
+  <div class="comment-input">
+    <textarea id="commentText" rows="1" placeholder="Write a comment..."></textarea>
+    <button onclick="addComment()">Send</button>
+  </div>
+</div>
+</body>
+</html>
